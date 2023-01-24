@@ -29,21 +29,21 @@ namespace Cinema.Infrastructure.Persistence.Configurations
                         Id = 1,
                         PoltronaSala = 1,
                         SalaId = 1,
-                        PoltronaOcupada = true
+                        PoltronaLivre = true
                     },
                     new Poltrona()
                     {
                         Id = 2,
                         PoltronaSala = 2,
                         SalaId = 1,
-                        PoltronaOcupada = true
+                        PoltronaLivre = true
                     },
                     new Poltrona()
                     {
                         Id = 3,
                         PoltronaSala = 3,
                         SalaId = 1,
-                        PoltronaOcupada = true
+                        PoltronaLivre = true
                     }
                 });
         }
