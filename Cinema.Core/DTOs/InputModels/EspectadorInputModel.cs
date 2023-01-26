@@ -15,10 +15,7 @@ namespace Cinema.Application.DTOs.InputModels
             DataNascimento = dataNascimento;
         }
 
-        public int Id { get; private set; }
         public string Nome { get; set; }
         public DateTime DataNascimento { get; set; }
-
-        public void SetId(int id) => Id = id;
     }
 }

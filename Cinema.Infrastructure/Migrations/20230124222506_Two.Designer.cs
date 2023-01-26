@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cinema.Infrastructure.Migrations
 {
     [DbContext(typeof(CinemaDbContext))]
-    [Migration("20230120020357_InitialDb")]
-    partial class InitialDb
+    [Migration("20230124222506_Two")]
+    partial class Two
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -178,10 +178,10 @@ namespace Cinema.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("PoltronaSala")
-                        .HasColumnType("int");
+                    b.Property<bool>("PoltronaLivre")
+                        .HasColumnType("bit");
 
-                    b.Property<int>("PoltronaStatus")
+                    b.Property<int>("PoltronaSala")
                         .HasColumnType("int");
 
                     b.Property<int>("SalaId")
@@ -199,22 +199,22 @@ namespace Cinema.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
+                            PoltronaLivre = true,
                             PoltronaSala = 1,
-                            PoltronaStatus = 0,
                             SalaId = 1
                         },
                         new
                         {
                             Id = 2,
+                            PoltronaLivre = true,
                             PoltronaSala = 2,
-                            PoltronaStatus = 0,
                             SalaId = 1
                         },
                         new
                         {
                             Id = 3,
+                            PoltronaLivre = true,
                             PoltronaSala = 3,
-                            PoltronaStatus = 0,
                             SalaId = 1
                         });
                 });

@@ -27,8 +27,8 @@ namespace Cinema.Infrastructure.Persistence.Configurations
                     new Ingresso()
                     {
                         Id = 1,
-                        SessaoId = 1,
                         EspectadorId = 1,
+                        SessaoId = 1,
                         PoltronaId = 1
                     },
                     new Ingresso()

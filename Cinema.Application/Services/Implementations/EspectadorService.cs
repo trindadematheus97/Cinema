@@ -3,6 +3,7 @@ using Cinema.Application.DTOs.ViewModels;
 using Cinema.Application.Repositories.Interfaces;
 using Cinema.Application.Services.Interfaces;
 using Cinema.Core.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,9 @@ namespace Cinema.Application.Services.Implementations
             _espectadorRepository = espectadorRepository;
         }
 
-        public bool CreateAsync(EspectadorInputModel inputModel)
+        public bool Create(EspectadorInputModel inputModel)
         {
-            var espectador = new EspectadorInputModel(inputModel.Nome, inputModel.DataNascimento);
+            var espectador = new Espectador(inputModel.Nome, inputModel.DataNascimento);
 
             var espectadorAdicionado = _espectadorRepository.Create(espectador);
 
@@ -45,7 +46,7 @@ namespace Cinema.Application.Services.Implementations
             return espectadorViewModel;
         }
 
-        public bool Update(Espectador inputModel, int id)
+        public bool Update(EspectadorInputModel inputModel, int id)
         {
             var espectador = _espectadorRepository.GetById(id);
 
@@ -53,11 +54,12 @@ namespace Cinema.Application.Services.Implementations
 
             espectador.Update(inputModel.Nome, inputModel.DataNascimento);
 
-            var espectadorAtualizado = _espectadorRepository.Update(espectador);
+            _espectadorRepository.Update(espectador);
 
-            if (espectadorAtualizado != null) return true;
+            if (espectador  !=null) return true;
 
             return false;
+
         }
 
         public bool Delete(int id)

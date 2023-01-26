@@ -1,6 +1,8 @@
+using Cinema.Application.Repositories.Implementations;
 using Cinema.Application.Repositories.Interfaces;
 using Cinema.Application.Services.Implementations;
 using Cinema.Application.Services.Interfaces;
+using Cinema.Core.Repositories;
 using Cinema.Infrastructure.Persistence;
 using Cinema.Infrastructure.Persistence.Repositories.Implementations;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +16,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<CinemaDbContext>(options=> options.UseInMemoryDatabase(builder.Configuration.GetConnectionString("CinemaConnection")));
+builder.Services.AddDbContext<CinemaDbContext>(options=> options.UseSqlServer(builder.Configuration.GetConnectionString("CinemaConnection")));
 
 builder.Services.AddScoped<IEspectadorRepository, EspectadorRepository>();
 builder.Services.AddScoped<IEspectadorService, EspectadorService>();
+
+
+builder.Services.AddScoped<IIngresoRepository, IngressoRepository>();
+builder.Services.AddScoped<IIngressoService, IngressoService>();
 
 var app = builder.Build();
 

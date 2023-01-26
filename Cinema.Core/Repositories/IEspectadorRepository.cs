@@ -11,10 +11,10 @@ namespace Cinema.Application.Repositories.Interfaces
 {
     public interface IEspectadorRepository
     {
-        int Create(EspectadorInputModel inputModel);
+        int Create(Espectador espectador);
         IEnumerable<EspectadorViewModel> GetAll();
         Espectador GetById(int id);
-        bool Update(Espectador inputModel);
+        bool Update(Espectador espectador);
         bool Delete(int id);
     }
 }

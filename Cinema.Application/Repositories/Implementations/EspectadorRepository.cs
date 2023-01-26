@@ -1,4 +1,5 @@
-﻿using Cinema.Application.DTOs.InputModels;
+﻿using Azure.Core;
+using Cinema.Application.DTOs.InputModels;
 using Cinema.Application.DTOs.ViewModels;
 using Cinema.Application.Repositories.Interfaces;
 using Cinema.Core.Entities;
@@ -19,15 +20,18 @@ namespace Cinema.Infrastructure.Persistence.Repositories.Implementations
         {
             _dbContext = dbContext;
         }
-        public  int Create(EspectadorInputModel inputModel)
+        public  int Create(Espectador espectador)
         {
-            var espectador = new Espectador(inputModel.Id, inputModel.Nome, inputModel.DataNascimento);
 
             var dB =  _dbContext.Espectadores.AddAsync(espectador);
 
             _dbContext.SaveChanges();
-            
-            return espectador.Id;
+
+            int rows = _dbContext.SaveChanges();
+
+            if (rows > 0) return rows;
+
+            return 0; 
         }
 
         public  IEnumerable<EspectadorViewModel> GetAll()
@@ -49,19 +53,17 @@ namespace Cinema.Infrastructure.Persistence.Repositories.Implementations
             return espectador;
         }
 
-        public bool Update(Espectador inputModel)
+        public bool Update(Espectador espectador)
         {
+            
+            var espectadorUp = _dbContext.Espectadores.SingleOrDefault(p => p.Id == espectador.Id);
 
-            var espectador = _dbContext.Espectadores.SingleOrDefault(e => e.Id == inputModel.Id);
+            if (espectadorUp == null) return false;
 
-            if (espectador != null) 
-            {
-                espectador.Update(inputModel.Nome, inputModel.DataNascimento);
-                int rowsAffected = _dbContext.SaveChanges();
 
-                if (rowsAffected > 0) return true;
-            }
+           int rows = _dbContext.SaveChanges();
 
+            if(rows != null) return true;
             return false;
 
         }

@@ -10,7 +10,6 @@ namespace Cinema.Core.Entities
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-
         // nav
         public List<Sala> Salas { get; set; }
         public List<Sessao> Sessoes { get; set; }
