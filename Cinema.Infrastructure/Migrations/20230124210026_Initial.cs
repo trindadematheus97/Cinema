@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Cinema.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialDb : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -85,7 +85,7 @@ namespace Cinema.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PoltronaSala = table.Column<int>(type: "int", nullable: false),
-                    PoltronaStatus = table.Column<int>(type: "int", nullable: false),
+                    PoltronaLivre = table.Column<bool>(type: "bit", nullable: false),
                     SalaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -141,9 +141,9 @@ namespace Cinema.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    EspectadorId = table.Column<int>(type: "int", nullable: false),
-                    SessaoId = table.Column<int>(type: "int", nullable: false),
-                    PoltronaId = table.Column<int>(type: "int", nullable: false)
+                    EspectadorId = table.Column<int>(type: "int", nullable: true),
+                    SessaoId = table.Column<int>(type: "int", nullable: true),
+                    PoltronaId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -191,12 +191,12 @@ namespace Cinema.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Poltrona",
-                columns: new[] { "Id", "PoltronaSala", "PoltronaStatus", "SalaId" },
+                columns: new[] { "Id", "PoltronaLivre", "PoltronaSala", "SalaId" },
                 values: new object[,]
                 {
-                    { 1, 1, 0, 1 },
-                    { 2, 2, 0, 1 },
-                    { 3, 3, 0, 1 }
+                    { 1, true, 1, 1 },
+                    { 2, true, 2, 1 },
+                    { 3, true, 3, 1 }
                 });
 
             migrationBuilder.InsertData(

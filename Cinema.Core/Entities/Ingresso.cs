@@ -8,6 +8,30 @@ namespace Cinema.Core.Entities
 {
     public class Ingresso
     {
+        public Ingresso()
+        {
+
+        }
+        public Ingresso(int espectadorId, int sessaoId, int poltronaId)
+        {
+            EspectadorId = espectadorId;
+            SessaoId= sessaoId;
+            PoltronaId= poltronaId;
+        }
+
+        public void Update(int espectadorId, int sessaoId, int poltronaId)
+        {
+            EspectadorId = espectadorId;
+            SessaoId = sessaoId;
+            PoltronaId = poltronaId;
+        }
+
+        public void AddIngresso(int espectadorId, int sessaoId)
+        {
+            EspectadorId = espectadorId;
+            SessaoId = sessaoId;
+        }
+
         public int Id { get; set; }
 
         // nav

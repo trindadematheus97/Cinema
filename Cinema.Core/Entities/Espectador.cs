@@ -18,6 +18,11 @@ namespace Cinema.Core.Entities
             Nome = nome;
             dataNascimento = dataNascimento;
         }
+        public Espectador(string nome, DateTime dataNascimento)
+        {
+            Nome = nome;
+            dataNascimento = dataNascimento;
+        }
 
         public int Id { get; set; }
         public string Nome { get; set; }
