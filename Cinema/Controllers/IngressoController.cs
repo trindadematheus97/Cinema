@@ -4,6 +4,7 @@ using Cinema.Application.Services.Interfaces;
 using Cinema.Core.DTOs.InputModels;
 using Cinema.Core.Entities;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Cinema.Api.Controllers
 {

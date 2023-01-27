@@ -48,8 +48,7 @@ namespace Cinema.Api.Controllers
         {
             var espectador = _espectadorService.GetById(id);
 
-            if (espectador == null)
-                return NotFound();
+            if (espectador == null) return NotFound();
 
             if (_espectadorService.Update(inputModel, id) == true) return Ok();
 
