@@ -55,10 +55,10 @@ namespace Cinema.Infrastructure.Persistence.Repositories.Implementations
 
         public bool Update(Espectador espectador)
         {
-            
-            var espectadorUp = _dbContext.Espectadores.SingleOrDefault(p => p.Id == espectador.Id);
 
-            if (espectadorUp == null) return false;
+            //var espectadorUpdate = _dbContext.Espectadores.SingleOrDefault(p => p.Id == espectador.Id);
+            _dbContext.Update(espectador);
+            if (espectador == null) return false;
 
 
            int rows = _dbContext.SaveChanges();

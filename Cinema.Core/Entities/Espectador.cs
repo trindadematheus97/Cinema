@@ -14,7 +14,7 @@ namespace Cinema.Core.Entities
         }
         public Espectador(int id, string nome, DateTime dataNascimento)
         {
-            Id = Id;
+            Id = id;
             Nome = nome;
             dataNascimento = dataNascimento;
         }

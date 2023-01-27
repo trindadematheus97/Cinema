@@ -5,7 +5,11 @@ using Cinema.Application.Services.Interfaces;
 using Cinema.Core.Repositories;
 using Cinema.Infrastructure.Persistence;
 using Cinema.Infrastructure.Persistence.Repositories.Implementations;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,14 +20,23 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<CinemaDbContext>(options=> options.UseSqlServer(builder.Configuration.GetConnectionString("CinemaConnection")));
 
+builder.Services.AddDbContext<CinemaDbContext>(options => {
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CinemaConnection"));
+            
+});
+
+//espectador
 builder.Services.AddScoped<IEspectadorRepository, EspectadorRepository>();
 builder.Services.AddScoped<IEspectadorService, EspectadorService>();
 
-
+//ingresso
 builder.Services.AddScoped<IIngresoRepository, IngressoRepository>();
 builder.Services.AddScoped<IIngressoService, IngressoService>();
+
+//filme
+builder.Services.AddScoped<IFilmeRepository, FilmeRepository>();
+builder.Services.AddScoped<IFilmeService, FilmeService>();
 
 var app = builder.Build();
 
